@@ -1,0 +1,37 @@
+<aura:component controller="ContactsController">
+    <h1 align= "center">Show Contacts Aura Component</h1><br/><br/>
+    <aura:attribute name="contacts" type="Contact[]"/>
+    <aura:attribute name="newContact" type="Contact"
+                   default="{'sObjectType': 'Contact', 'FirstName': 'Praveen', 'LastName': 'kumarC',
+                             'Email': 'praveen@Venerate.com'}" />
+    <lightning:button variant="brand" label="Get Contacts" 
+            title="Get Contacts" onclick="{! c.jsGetContacts }" />
+
+    <p align="center">New Contact<br/><br/>
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="6">
+                <form align="center" class="slds-form_stacked">
+                   <h1 align="center"> <lightning:input label="First Name" 
+                                     name="FirstName" 
+                                     value="{!v.newContact.FirstName}" 
+                                     required="true" /></h1>
+                    <h1 align="center"><lightning:input label="Last Name" 
+                                     name="LastName" 
+                                     value="{!v.newContact.LastName}" 
+                                     required="true" /></h1>
+                    <h1 align="center"><lightning:input label="Email" 
+                                     name="Email" 
+                                     value="{!v.newContact.Email}" 
+                                     required="true" /> </h1>
+                    <h1 align="center"><lightning:button variant="brand" label="Save Contact" 
+                                     title="Save Contact" onclick="{! c.jsSaveContact }" /> </h1>
+                </form>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </p>
+    <br/><br/>
+    <strong>Contacts</strong>
+    <aura:iteration items="{!v.contacts}" var="contact">
+        <li>{!contact.Name} - {!contact.CreatedDate} </li>
+    </aura:iteration>
+</aura:component>
